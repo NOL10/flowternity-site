@@ -48,7 +48,7 @@ export function CampRegistration() {
           age: formData.age,
           parentName: formData.parentName,
           email: formData.email,
-          phone: String(formData.phone), // Ensure phone is sent as string
+          phone: String(formData.phone).replace(/[^\d+\s]/g, '').trim(), // Clean phone number - remove special chars except + and spaces
           camps: selectedCamps.map(id => {
             const camp = campOptions.find(c => c.id === id)
             return camp ? camp.label : id
@@ -230,7 +230,11 @@ export function CampRegistration() {
                       Phone <span className="text-primary">*</span>
                     </label>
                     <input id="phone" type="tel" required value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => {
+                        // Only allow numbers, +, and spaces
+                        const cleaned = e.target.value.replace(/[^\d+\s]/g, '')
+                        setFormData({ ...formData, phone: cleaned })
+                      }}
                       className="w-full rounded-md border border-border bg-input px-4 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary"
                       placeholder="+91 XXXXX XXXXX"
                     />
