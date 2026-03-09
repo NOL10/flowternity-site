@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
 import Razorpay from "razorpay"
 
+// Debug: Check if environment variables are loaded
+console.log("Environment check:")
+console.log("KEY_ID:", process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ? "SET" : "MISSING")
+console.log("KEY_SECRET:", process.env.RAZORPAY_KEY_SECRET ? "SET" : "MISSING")
+console.log("ACTUAL KEY_ID:", process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID?.substring(0, 10) + "...")
+
 const razorpay = new Razorpay({
   key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
   key_secret: process.env.RAZORPAY_KEY_SECRET!,
