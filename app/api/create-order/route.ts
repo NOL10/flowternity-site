@@ -6,6 +6,11 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET!,
 })
 
+// Debug: Check if environment variables are loaded
+console.log("Environment check:")
+console.log("KEY_ID:", process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ? "SET" : "MISSING")
+console.log("KEY_SECRET:", process.env.RAZORPAY_KEY_SECRET ? "SET" : "MISSING")
+
 export async function POST(request: NextRequest) {
   try {
     const { amount, currency = "INR" } = await request.json()
