@@ -48,7 +48,7 @@ export function CampRegistration() {
           age: formData.age,
           parentName: formData.parentName,
           email: formData.email,
-          phone: formData.phone,
+          phone: String(formData.phone), // Ensure phone is sent as string
           camps: selectedCamps.map(id => {
             const camp = campOptions.find(c => c.id === id)
             return camp ? camp.label : id
@@ -70,7 +70,12 @@ export function CampRegistration() {
 
   const handlePaymentFailure = (error) => {
     console.error("Payment failed:", error)
-    // Handle payment failure (show error message, etc.)
+    // Reset to first step and clear form on payment failure
+    setStep(1)
+    setSelectedCamps([])
+    setFormData({ childName: "", age: "", parentName: "", email: "", phone: "" })
+    setSubmitted(false)
+    alert("Payment failed. Please try again.")
   }
 
   if (submitted) {
