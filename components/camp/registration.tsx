@@ -50,11 +50,18 @@ export function CampRegistration() {
     }
 
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbz6IQtHmcPLluvfpvFxjOg1T8_27FPcEqkiSEZC_9F_bof7qvP5C31qOvrTpbB1xcM1/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbz6IQtHmcPLluvfpvFxjOg1T8_27FPcEqkiSEZC_9F_bof7qvP5C31qOvrTpbB1xcM1/exec", {
         method: "POST",
         body: JSON.stringify(payload)
       })
-      console.log("Saved to Google Sheets")
+
+      if (response.ok) {
+        console.log("Saved to Google Sheets")
+        const result = await response.json()
+        console.log("Sheet response:", result)
+      } else {
+        console.error("Sheet HTTP error:", response.status, response.statusText)
+      }
     } catch (err) {
       console.error("Sheet error:", err)
     }
