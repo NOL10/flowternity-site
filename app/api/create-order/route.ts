@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server"
 import Razorpay from "razorpay"
 
 const razorpay = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!,
+  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "YOUR_RZP_TEST_KEY", // Temp fallback
+  key_secret: process.env.RAZORPAY_KEY_SECRET || "your_test_secret_here", // Temp fallback
 })
 
 // Debug: Check if environment variables are loaded
