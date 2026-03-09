@@ -72,8 +72,12 @@ export function RazorpayPayment({
         }),
       })
 
+      console.log("Order creation response:", response)
+
       if (!response.ok) {
-        throw new Error("Failed to create order")
+        const errorText = await response.text()
+        console.error("Order creation failed:", errorText)
+        throw new Error(`Failed to create order: ${response.status}`)
       }
 
       const order = await response.json()
