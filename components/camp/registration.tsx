@@ -50,7 +50,7 @@ export function CampRegistration() {
     }
 
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbw_r7hZ2zK-emuNqS1wJHsH0pRxCdyonrZkcWXCLIG4VGD9jQKQYPKgQuTfeKGRnz2t/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbz6IQtHmcPLluvfpvFxjOg1T8_27FPcEqkiSEZC_9F_bof7qvP5C31qOvrTpbB1xcM1/exec", {
         method: "POST",
         body: JSON.stringify(payload)
       })
