@@ -1,0 +1,80 @@
+.what-lives-section {
+  padding: 2rem 3rem;
+  background: #fafaf8;
+}
+
+.what-lives-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.what-lives-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 400;
+  color: #1a1a1a;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  word-spacing: 0.3em;
+}
+
+.title-word {
+  display: inline-block;
+  opacity: 0;
+}
+
+.ranch-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ranch-photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 3/4;
+}
+
+.ranch-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.ranch-photo:hover img {
+  transform: scale(1.05);
+}
+
+.breathe-text {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 300;
+  letter-spacing: 1em;
+  color: #1a1a1a;
+  margin-top: 2.5rem;
+  min-height: 1.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+@media (max-width: 968px) {
+  .what-lives-section {
+    padding: 3rem 2rem;
+  }
+
+  .ranch-photos-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .breathe-text {
+    margin-top: 2rem;
+  }
+}

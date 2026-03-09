@@ -1,0 +1,375 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 2rem 3rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Home page - transparent by default, visible when scrolled */
+.navbar.home-page {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.navbar.home-page.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Coaching page - always visible */
+.navbar.coaching-page {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.navbar.coaching-page.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navbar-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+/* Home page - white text by default, dark when scrolled */
+.navbar.home-page .navbar-logo {
+  color: #fff !important;
+}
+
+.navbar.home-page.scrolled .navbar-logo {
+  color: #1a1a1a !important;
+}
+
+/* Coaching page - always dark */
+.navbar.coaching-page .navbar-logo {
+  color: #1a1a1a;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.navbar-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Home page - white text by default, dark when scrolled */
+.navbar.home-page .navbar-link {
+  color: #fff;
+}
+
+.navbar.home-page.scrolled .navbar-link {
+  color: #1a1a1a;
+}
+
+/* Coaching page - always dark */
+.navbar.coaching-page .navbar-link {
+  color: #1a1a1a;
+}
+
+.navbar-link>* {
+  color: inherit;
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.navbar-link:hover::after {
+  width: 100%;
+}
+
+.desktop-cta-btn {
+  display: block;
+}
+
+.mobile-cta-btn {
+  display: none;
+}
+
+.book-visit-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Home page - transparent with white border by default, dark when scrolled */
+.navbar.home-page .book-visit-btn {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.navbar.home-page.scrolled .book-visit-btn {
+  color: #fff;
+  background: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  backdrop-filter: none;
+}
+
+/* Coaching page - always dark */
+.navbar.coaching-page .book-visit-btn {
+  color: #fff;
+  background: #1a1a1a;
+  border: 1px solid #1a1a1a;
+}
+
+.navbar.home-page .book-visit-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.navbar.home-page.scrolled .book-visit-btn:hover {
+  background: #000;
+  border-color: #000;
+  transform: translateY(-2px);
+}
+
+.navbar.coaching-page .book-visit-btn:hover {
+  background: #000;
+  border-color: #000;
+  transform: translateY(-2px);
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 10000;
+  position: relative;
+}
+
+.mobile-menu-toggle span {
+  width: 24px;
+  height: 2px;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+/* Home page - white by default, dark when scrolled */
+.navbar.home-page .mobile-menu-toggle span {
+  background: #fff;
+}
+
+.navbar.home-page.scrolled .mobile-menu-toggle span {
+  background: #1a1a1a;
+}
+
+/* Coaching page - always dark */
+.navbar.coaching-page .mobile-menu-toggle span {
+  background: #1a1a1a;
+}
+
+.mobile-menu-toggle.menu-open span {
+  background: #1a1a1a !important;
+}
+
+@media (max-width: 768px) {
+
+  /* Ensure hamburger is visible when menu is open */
+  .mobile-menu-toggle.menu-open span {
+    background: #1a1a1a !important;
+  }
+
+  .navbar.home-page .mobile-menu-toggle.menu-open span,
+  .navbar.home-page.scrolled .mobile-menu-toggle.menu-open span {
+    background: #1a1a1a !important;
+  }
+
+  .navbar {
+    padding: 1rem 1.5rem;
+    z-index: 10000;
+  }
+
+  /* Ensure mobile menu is always on top when open */
+  .navbar .navbar-menu.mobile-open {
+    z-index: 10002;
+  }
+
+  .navbar.scrolled {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .navbar-container {
+    gap: 0.75rem;
+    position: relative;
+    flex-wrap: nowrap;
+  }
+
+  .navbar-logo {
+    font-size: 1.25rem;
+    flex: 1;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: 1rem;
+    position: relative;
+    z-index: 10003;
+  }
+
+  /* When menu is open, ensure toggle button is visible */
+  .navbar .mobile-menu-toggle.menu-open {
+    z-index: 10003;
+  }
+
+  .desktop-cta-btn {
+    display: none;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 10002;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: none;
+  }
+
+  .navbar-menu.mobile-open {
+    transform: translateX(0);
+  }
+
+  .navbar-menu .navbar-link {
+    color: #1a1a1a !important;
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  /* Override any home-page styles for mobile menu links */
+  .navbar.home-page .navbar-menu .navbar-link,
+  .navbar.home-page.scrolled .navbar-menu .navbar-link {
+    color: #1a1a1a !important;
+  }
+
+  .navbar-menu .navbar-link * {
+    color: #1a1a1a !important;
+  }
+
+  .navbar-menu .navbar-link::after {
+    display: none;
+  }
+
+  .mobile-cta-btn {
+    display: block !important;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    width: auto;
+    background: #1a1a1a !important;
+    border: 1px solid #1a1a1a !important;
+    border-color: #1a1a1a !important;
+    color: #fff !important;
+  }
+
+  /* Override any home-page styles for mobile CTA button */
+  .navbar.home-page .mobile-cta-btn,
+  .navbar.home-page.scrolled .mobile-cta-btn {
+    background: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+    color: #fff !important;
+  }
+
+  .mobile-cta-btn:hover {
+    background: #000 !important;
+    border-color: #000 !important;
+    color: #fff !important;
+  }
+
+  /* Hamburger animation */
+  .mobile-menu-toggle span:nth-child(1) {
+    transform: rotate(0);
+  }
+
+  .mobile-menu-toggle span:nth-child(2) {
+    opacity: 1;
+  }
+
+  .mobile-menu-toggle span:nth-child(3) {
+    transform: rotate(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar.scrolled {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-logo {
+    font-size: 0.9rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .mobile-menu-toggle {
+    margin-left: 0.5rem;
+  }
+}
