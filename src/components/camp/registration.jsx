@@ -35,10 +35,37 @@ export function CampRegistration() {
     setStep(3)
   }
 
-  const handlePaymentSuccess = (paymentResponse) => {
-    setSubmitted(true)
-    // TODO: Save registration data to database
-    console.log("Payment successful:", paymentResponse)
+  const handlePaymentSuccess = async (paymentResponse) => {
+    try {
+      // Send data to Google Sheet
+      const response = await fetch('https://script.google.com/macros/s/AKfycbyZhniqlVD_aC_xWd7982dM7Ru2Tv6HJ-Mlu0YU1g3VduulP3TcfEV4j9SwagmZzFYU/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          childName: formData.childName,
+          age: formData.age,
+          parentName: formData.parentName,
+          email: formData.email,
+          phone: formData.phone,
+          camps: selectedCamps.map(id => {
+            const camp = campOptions.find(c => c.id === id)
+            return camp ? camp.label : id
+          }).join(', '),
+          amount: totalPrice,
+          paymentId: paymentResponse.razorpay_payment_id
+        }),
+        mode: 'no-cors' // Required for Google Apps Script
+      })
+
+      setSubmitted(true)
+      console.log("Data sent to sheet successfully")
+    } catch (error) {
+      console.error("Error sending data to sheet:", error)
+      // Still show success to user even if sheet update fails
+      setSubmitted(true)
+    }
   }
 
   const handlePaymentFailure = (error) => {
