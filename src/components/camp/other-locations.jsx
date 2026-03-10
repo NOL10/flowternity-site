@@ -16,7 +16,7 @@ const locations = [
 
 export function OtherLocations() {
   return (
-    <section className="py-20 bg-background">
+    <section id="other-locations" className="py-20 bg-background">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -105,8 +105,8 @@ export function OtherLocations() {
                     <p className="text-sm text-muted-foreground mb-2">
                       Send us your questions and requirements
                     </p>
-                    <a href="mailto:info@flowternity.com" className="block text-sm text-primary hover:underline">
-                      info@flowternity.com
+                    <a href="mailto:leo@flowternity.com" className="block text-sm text-primary hover:underline">
+                      leo@flowternity.com
                     </a>
                   </div>
                 </div>

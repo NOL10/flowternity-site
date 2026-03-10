@@ -17,6 +17,8 @@ export function CampNavbar() {
     { label: "Facility", href: "#facility" },
     { label: "Pricing", href: "#pricing" },
     { label: "Contact", href: "#contact" },
+    { label: "Other Locations", href: "#other-locations" },
+
   ]
 
   return (
