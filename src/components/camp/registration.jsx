@@ -231,12 +231,13 @@ export function CampRegistration() {
                     </label>
                     <input id="phone" type="tel" required value={formData.phone}
                       onChange={(e) => {
-                        // Only allow numbers, +, and spaces
-                        const cleaned = e.target.value.replace(/[^\d+\s]/g, '')
+                        // Only allow exactly 10 digits
+                        const cleaned = e.target.value.replace(/\D/g, '').slice(0, 10)
                         setFormData({ ...formData, phone: cleaned })
                       }}
                       className="w-full rounded-md border border-border bg-input px-4 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary"
-                      placeholder="+91 XXXXX XXXXX"
+                      placeholder="XXXXXXXXXX"
+                      maxLength={10}
                     />
                   </div>
                   <div className="sm:col-span-2">
