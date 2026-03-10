@@ -25,20 +25,38 @@ export function CampSchedule() {
 
             {/* Camp date chips */}
             <div className="mt-8 flex flex-col gap-3">
-              <div className="inline-flex items-center gap-3 rounded-lg border border-primary/20 bg-primary/5 px-5 py-3">
+              <button
+                className="inline-flex items-center gap-3 rounded-lg border border-primary/20 bg-primary/5 px-5 py-3 transition-all hover:border-primary/30 hover:bg-primary/10 hover:shadow-sm cursor-pointer"
+                onClick={() => {
+                  // Scroll to registration section
+                  const registrationElement = document.getElementById('register')
+                  if (registrationElement) {
+                    registrationElement.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
+              >
                 <div className="h-2.5 w-2.5 rounded-full bg-primary" />
-                <div>
+                <div className="text-left">
                   <span className="block text-[10px] font-semibold uppercase tracking-widest text-primary">Camp 1</span>
                   <span className="text-sm font-bold text-foreground">6 April - 23 April 2026</span>
                 </div>
-              </div>
-              <div className="inline-flex items-center gap-3 rounded-lg border border-border bg-secondary/50 px-5 py-3">
+              </button>
+              <button
+                className="inline-flex items-center gap-3 rounded-lg border border-border bg-secondary/50 px-5 py-3 transition-all hover:border-primary/20 hover:bg-secondary/70 hover:shadow-sm cursor-pointer"
+                onClick={() => {
+                  // Scroll to registration section
+                  const registrationElement = document.getElementById('register')
+                  if (registrationElement) {
+                    registrationElement.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
+              >
                 <div className="h-2.5 w-2.5 rounded-full border-2 border-primary bg-transparent" />
-                <div>
+                <div className="text-left">
                   <span className="block text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Camp 2</span>
                   <span className="text-sm font-bold text-foreground">27 April - 14 May 2026</span>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -56,9 +74,8 @@ export function CampSchedule() {
               {scheduleData.map((item, index) => (
                 <div
                   key={item.sport}
-                  className={`grid grid-cols-3 items-center px-5 py-4 transition-colors hover:bg-primary/[0.03] ${
-                    index < scheduleData.length - 1 ? "border-b border-border" : ""
-                  }`}
+                  className={`grid grid-cols-3 items-center px-5 py-4 transition-colors hover:bg-primary/[0.03] ${index < scheduleData.length - 1 ? "border-b border-border" : ""
+                    }`}
                 >
                   <span className="text-sm font-semibold text-foreground">{item.sport}</span>
                   <span className="text-center text-sm text-foreground">{item.camp1}</span>

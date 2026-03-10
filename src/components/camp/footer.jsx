@@ -39,11 +39,28 @@ export function CampFooter() {
               <a href="tel:9886696155" className="hover:text-primary">+91 98866 96155</a>
               <a href="tel:7795310645" className="hover:text-primary">+91 77953 10645</a>
               <p className="mt-2">Horamavu Kalkere Main Road, Bengaluru - 560043</p>
+              <button
+                onClick={(e) => {
+                  e.preventDefault()
+                  setTimeout(() => {
+                    window.open('https://www.google.com/maps/search/?api=1&query=Flowternity+Sports+Kalkere+Horamavu+Bengaluru', '_blank', 'noopener,noreferrer')
+                  }, 100)
+                }}
+                className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Open in Maps <span className="text-primary"></span>
+              </button>
             </div>
             <div className="mt-3 flex items-center gap-3">
               <a href="https://www.flowternity.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[13px] font-semibold text-primary hover:underline">
                 flowternity.com
                 <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" /></svg>
+              </a>
+              <a href="https://www.facebook.com/p/Flowternity-Sports-Multi-Sport-Facility-61573655250336/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+                Facebook
               </a>
               <a href="https://www.instagram.com/flowternity_sports" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline">
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">

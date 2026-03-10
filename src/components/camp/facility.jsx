@@ -50,7 +50,7 @@ export function CampFacility() {
           <div className="relative">
             <div className="relative overflow-hidden rounded-xl">
               <img
-                src="/images/facility.jpg"
+                src="/images/facility.jpeg"
                 alt="Flowternity Sports multi-sport facility interior"
                 className="h-[480px] w-full object-cover"
               />

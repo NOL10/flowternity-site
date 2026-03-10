@@ -26,9 +26,9 @@ export function CampRegistration() {
     )
   }
 
-  const pricePerCamp = selectedCamps.length >= 2 ? 3499 : 3999
+  const pricePerCamp = selectedCamps.length >= 2 ? 3599 : 3999
   const totalPrice = selectedCamps.length * pricePerCamp
-  const savings = selectedCamps.length >= 2 ? selectedCamps.length * 500 : 0
+  const savings = selectedCamps.length >= 2 ? selectedCamps.length * 400 : 0
 
   const handleSubmit = (e) => {
     e.preventDefault()
