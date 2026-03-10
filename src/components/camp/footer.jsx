@@ -43,7 +43,7 @@ export function CampFooter() {
                 onClick={(e) => {
                   e.preventDefault()
                   setTimeout(() => {
-                    window.open('https://www.google.com/maps/search/?api=1&query=Flowternity+Sports+Kalkere+Horamavu+Bengaluru', '_blank', 'noopener,noreferrer')
+                    window.open('https://www.google.com/maps/place/Flowternity+Sports+-+Multi+Sport+Facility/@13.0353296,77.6703963,975m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae1185e1327d47:0xc21f974f50d32d2a!8m2!3d13.0353296!4d77.6703963!16s%2Fg%2F11w_y1m6vk?entry=ttu&g_ep=EgoyMDI2MDMwNS4wIKXMDSoASAFQAw%3D%3D', '_blank', 'noopener,noreferrer')
                   }, 100)
                 }}
                 className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"

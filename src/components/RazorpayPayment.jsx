@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 
-const RazorpayPayment = ({ 
-  amount, 
-  onSuccess, 
-  onFailure, 
+const RazorpayPayment = ({
+  amount,
+  onSuccess,
+  onFailure,
   customerDetails,
-  prefill = {} 
+  prefill = {}
 }) => {
   useEffect(() => {
     const loadRazorpayScript = () => {
@@ -30,7 +30,7 @@ const RazorpayPayment = ({
         amount: amount * 100, // Razorpay expects amount in paise
         currency: 'INR',
         name: 'Flowternity Sports',
-        description: 'Summer Camp Registration',
+        description: amount === 1 ? 'TEST Payment - Summer Camp Registration' : 'Summer Camp Registration',
         image: '/images/hero-basketball.jpg',
         prefill: {
           name: prefill.name || customerDetails?.parentName || '',

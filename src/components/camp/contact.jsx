@@ -35,7 +35,7 @@ export function CampContact() {
                 Kalkere, Horamavu, Bengaluru - 560043
               </p>
               <a
-                href="https://maps.app.goo.gl/8JNfVgMFXd89tv4m6"
+                href="https://www.google.com/maps/place/Flowternity+Sports+-+Multi+Sport+Facility/@13.0353296,77.6703963,975m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae1185e1327d47:0xc21f974f50d32d2a!8m2!3d13.0353296!4d77.6703963!16s%2Fg%2F11w_y1m6vk?entry=ttu&g_ep=EgoyMDI2MDMwNS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline"
@@ -60,7 +60,7 @@ export function CampContact() {
             {/* Map */}
             <div className="overflow-hidden rounded-xl border border-border">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.3!2d77.6679704!3d13.0352392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15b2612d2c0b:0x6d989623dd1e633e!2zMTPCsDAxJzEyLjMiTiA3N8KwMzknMDAuMCJF!5e0!3m2!1sen!2sin!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.3!2d77.6703963!3d13.0353296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1185e1327d47:0xc21f974f50d32d2a!2zMTPCsDAyJzEyLjYiTiA3N8KwNDAnMTQuNCJF!5e0!3m2!1sen!2sin!4v1"
                 width="100%"
                 height="220"
                 style={{ border: 0, filter: "grayscale(1) brightness(0.7)" }}
