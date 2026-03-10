@@ -12,7 +12,6 @@ import { CampRegistration } from './camp/registration.jsx';
 import { CampContact } from './camp/contact.jsx';
 import { CampFooter } from './camp/footer.jsx';
 import { FloatingCTA } from './camp/floating-cta.jsx';
-import { CampSEO } from './camp/seo.jsx';
 
 const SummerCampPage = () => {
   return (
