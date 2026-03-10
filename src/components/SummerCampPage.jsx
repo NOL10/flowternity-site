@@ -49,6 +49,10 @@ const SummerCampPage = () => {
   return (
     <>
       <Helmet>
+        {/* Favicon */}
+        <link rel="icon" type="image/jpeg" href="/favicon camp.jpeg" />
+        <link rel="apple-touch-icon" href="/favicon camp.jpeg" />
+
         {/* Primary Meta Tags */}
         <title>Summer Camp 2026 | Flowternity Multi-Sport Facility Bangalore</title>
         <meta name="description" content="Join Flowternity's exciting summer camp 2026! Basketball, futsal, skating, skateboarding, calisthenics & karate. International standard facilities. Ages 6-16. Register now!" />

@@ -9,11 +9,11 @@ const testimonials = [
   },
   {
     id: 2,
-    videoUrl: "/testimonials/preetham%20.mp4",
-    thumbnail: "/testimonials/preetham%20.mp4",
-    name: "Preetham",
-    sport: "skating",
-    quote: "Best sports camp experience! Professional coaching and great facilities."
+    videoUrl: "/testimonials/leo.mp4",
+    thumbnail: "/testimonials/leo.mp4",
+    name: "Coach Leo",
+    sport: "Flowternity Coach",
+    quote: "Flowternity is finding your flow building a community for Eternity"
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const testimonials = [
 
 export function CampTestimonials() {
   return (
-    <section className="relative bg-background py-20">
+    <section id="testimonials" className="relative bg-background py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-12 flex items-center gap-3">
           <div className="h-px w-8 bg-primary" />

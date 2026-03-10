@@ -15,6 +15,7 @@ export function CampNavbar() {
     { label: "Sports", href: "#sports" },
     { label: "Schedule", href: "#schedule" },
     { label: "Facility", href: "#facility" },
+    { label: "Testimonials", href: "#testimonials" },
     { label: "Pricing", href: "#pricing" },
     { label: "Contact", href: "#contact" },
     { label: "Other Locations", href: "#other-locations" },
