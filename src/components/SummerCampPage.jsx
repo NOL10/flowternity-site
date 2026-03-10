@@ -16,7 +16,6 @@ import { FloatingCTA } from './camp/floating-cta.jsx';
 const SummerCampPage = () => {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <CampSEO />
       <CampNavbar />
       <CampHero />
       <CampHighlights />
