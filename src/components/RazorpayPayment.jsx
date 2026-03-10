@@ -30,7 +30,7 @@ const RazorpayPayment = ({
         amount: amount * 100, // Razorpay expects amount in paise
         currency: 'INR',
         name: 'Flowternity Sports',
-        description: amount === 1 ? 'TEST Payment - Summer Camp Registration' : 'Summer Camp Registration',
+        description: 'Summer Camp Registration',
         image: '/images/hero-basketball.jpg',
         prefill: {
           name: prefill.name || customerDetails?.parentName || '',

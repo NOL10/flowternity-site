@@ -26,12 +26,9 @@ export function CampRegistration() {
     )
   }
 
-  // Test mode - set to true for 1 rupee testing, false for normal pricing
-  const TEST_MODE = true
-
-  const pricePerCamp = TEST_MODE ? 1 : (selectedCamps.length >= 2 ? 3599 : 3999)
+  const pricePerCamp = selectedCamps.length >= 2 ? 3599 : 3999
   const totalPrice = selectedCamps.length * pricePerCamp
-  const savings = TEST_MODE ? 0 : (selectedCamps.length >= 2 ? selectedCamps.length * 400 : 0)
+  const savings = selectedCamps.length >= 2 ? selectedCamps.length * 400 : 0
 
   const handleSubmit = (e) => {
     e.preventDefault()
