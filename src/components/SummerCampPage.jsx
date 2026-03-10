@@ -11,6 +11,7 @@ import { CampHowItWorks } from './camp/how-it-works.jsx';
 import { CampPricing } from './camp/pricing.jsx';
 import { CampRegistration } from './camp/registration.jsx';
 import { CampContact } from './camp/contact.jsx';
+import { OtherLocations } from './camp/other-locations.jsx';
 import { CampFooter } from './camp/footer.jsx';
 import { FloatingCTA } from './camp/floating-cta.jsx';
 
@@ -100,6 +101,7 @@ const SummerCampPage = () => {
         <CampPricing />
         <CampRegistration />
         <CampContact />
+        <OtherLocations />
         <CampFooter />
         <FloatingCTA />
       </main>
