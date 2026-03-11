@@ -5,9 +5,12 @@ const RazorpayPayment = ({
   onSuccess,
   onFailure,
   customerDetails,
-  prefill = {}
+  prefill = {},
+  triggerPayment = false
 }) => {
   useEffect(() => {
+    if (!triggerPayment) return;
+
     const loadRazorpayScript = () => {
       const script = document.createElement('script');
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
@@ -56,9 +59,9 @@ const RazorpayPayment = ({
         },
         ondismiss: function (reason) {
           if (reason === 'timeout') {
-            onFailure({ error: 'Payment timeout' });
+            onFailure({ error: 'Payment timeout', type: 'timeout' });
           } else {
-            onFailure({ error: 'Payment cancelled' });
+            onFailure({ error: 'Payment cancelled', type: 'cancelled' });
           }
         },
       };
@@ -67,13 +70,13 @@ const RazorpayPayment = ({
       razorpay.open();
     };
 
-    // Auto-trigger payment when component mounts
+    // Auto-trigger payment when component mounts and triggerPayment is true
     const timer = setTimeout(() => {
       loadRazorpayScript();
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [amount, onSuccess, onFailure, customerDetails, prefill]);
+  }, [amount, onSuccess, onFailure, customerDetails, prefill, triggerPayment]);
 
   return (
     <div className="flex items-center justify-center p-4">

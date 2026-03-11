@@ -7,7 +7,7 @@ const sports = [
     tag: "Court Sport",
     times: ["8 AM - 9 AM", "4 PM - 5 PM"],
     timeLabels: ["Morning", "Evening"],
-    skills: ["Ball handling & dribbling", "Shooting mechanics", "Offensive & defensive strategies", "Game awareness & match play"],
+    skills: ["Special guest appearance", "Ball handling & dribbling", "Shooting mechanics", "Offensive & defensive strategies", "Game awareness & match play"],
     gear: "Basketball shoes required. Personal basketball recommended.",
   },
   {
@@ -116,9 +116,18 @@ export function CampSports() {
 
               {/* Skills */}
               <ul className="mb-4 space-y-1.5">
-                {sport.skills.map((skill) => (
-                  <li key={skill} className="flex items-start gap-2 text-[13px] text-card-foreground">
-                    <div className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary" />
+                {sport.skills.map((skill, index) => (
+                  <li
+                    key={skill}
+                    className={`flex items-start gap-2 text-[13px] text-card-foreground ${index === 0 && skill === "Special guest appearance"
+                        ? "font-bold text-primary bg-primary/10 px-2 py-1 rounded-md border border-primary/20"
+                        : ""
+                      }`}
+                  >
+                    <div className={`mt-1.5 h-1 w-1 shrink-0 rounded-full ${index === 0 && skill === "Special guest appearance"
+                        ? "bg-primary"
+                        : "bg-primary"
+                      }`} />
                     {skill}
                   </li>
                 ))}

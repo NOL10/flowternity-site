@@ -19,6 +19,10 @@ export function CampRegistration() {
   })
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
+  const [couponCode, setCouponCode] = useState("")
+  const [couponApplied, setCouponApplied] = useState(false)
+  const [couponError, setCouponError] = useState("")
+  const [triggerPayment, setTriggerPayment] = useState(false)
 
   const toggleCamp = (id) => {
     setSelectedCamps((prev) =>
@@ -27,12 +31,33 @@ export function CampRegistration() {
   }
 
   const pricePerCamp = selectedCamps.length >= 2 ? 3599 : 3999
-  const totalPrice = selectedCamps.length * pricePerCamp
-  const savings = selectedCamps.length >= 2 ? selectedCamps.length * 400 : 0
+  const baseTotal = selectedCamps.length * pricePerCamp
+  const multiCampSavings = selectedCamps.length >= 2 ? selectedCamps.length * 400 : 0
+  const couponDiscount = couponApplied ? Math.round(baseTotal * 0.3) : 0
+  const totalPrice = baseTotal - couponDiscount
+  const totalSavings = multiCampSavings + couponDiscount
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setStep(3)
+  }
+
+  const applyCoupon = () => {
+    setCouponError("")
+
+    // Validate coupon code (case-sensitive)
+    if (couponCode.trim() === "ACADEMY30") {
+      setCouponApplied(true)
+    } else {
+      setCouponError("Invalid coupon code")
+      setCouponApplied(false)
+    }
+  }
+
+  const removeCoupon = () => {
+    setCouponCode("")
+    setCouponApplied(false)
+    setCouponError("")
   }
 
   const handlePaymentSuccess = async (paymentResponse) => {
@@ -54,6 +79,10 @@ export function CampRegistration() {
             return camp ? camp.label : id
           }).join(', '),
           amount: totalPrice,
+          originalAmount: baseTotal,
+          couponApplied: couponApplied,
+          couponCode: couponApplied ? couponCode : '',
+          discount: couponDiscount,
           paymentId: paymentResponse.razorpay_payment_id
         }),
         mode: 'no-cors' // Required for Google Apps Script
@@ -70,12 +99,24 @@ export function CampRegistration() {
 
   const handlePaymentFailure = (error) => {
     console.error("Payment failed:", error)
-    // Reset to first step and clear form on payment failure
-    setStep(1)
-    setSelectedCamps([])
-    setFormData({ childName: "", age: "", parentName: "", email: "", phone: "" })
-    setSubmitted(false)
-    alert("Payment failed. Please try again.")
+
+    // Reset trigger payment state
+    setTriggerPayment(false)
+
+    // Handle different types of payment failures
+    if (error.type === 'cancelled') {
+      // User cancelled payment - stay on confirmation page
+      // Don't show alert for cancellation, just let user try again
+      console.log("Payment cancelled by user")
+      setSubmitted(false);
+      setStep(3);
+    } else if (error.type === 'timeout') {
+      // Payment timed out
+      alert("Payment timed out. Please try again.")
+    } else {
+      // Other errors
+      alert("Payment failed. Please try again.")
+    }
   }
 
   if (submitted) {
@@ -94,11 +135,25 @@ export function CampRegistration() {
               We've sent a confirmation to {formData.email} and will reach out at {formData.phone} with further details.
             </p>
             <div className="mt-6 rounded-lg bg-secondary p-4">
-              <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Total</span>
+              <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Total Paid</span>
               <div className="font-[var(--font-heading)] text-3xl font-bold text-primary">&#x20B9;{totalPrice.toLocaleString("en-IN")}</div>
+              {totalSavings > 0 && (
+                <div className="mt-2 text-[11px] text-green-600">
+                  You saved &#x20B9;{totalSavings.toLocaleString("en-IN")}
+                </div>
+              )}
             </div>
             <button
-              onClick={() => { setSubmitted(false); setStep(1); setSelectedCamps([]); setFormData({ childName: "", age: "", parentName: "", email: "", phone: "" }); }}
+              onClick={() => {
+                setSubmitted(false);
+                setStep(1);
+                setSelectedCamps([]);
+                setFormData({ childName: "", age: "", parentName: "", email: "", phone: "" });
+                setCouponCode("");
+                setCouponApplied(false);
+                setCouponError("");
+                setTriggerPayment(false);
+              }}
               className="mt-5 text-[13px] font-semibold text-primary underline underline-offset-4"
             >
               Register another child
@@ -291,19 +346,28 @@ export function CampRegistration() {
                   <button onClick={() => setStep(2)} className="rounded-md border border-border px-6 py-2.5 text-[13px] font-semibold text-muted-foreground hover:text-foreground">
                     Back
                   </button>
-                  <RazorpayPayment
-                    amount={totalPrice}
-                    onSuccess={handlePaymentSuccess}
-                    onFailure={handlePaymentFailure}
-                    customerDetails={{
-                      childName: formData.childName,
-                      age: formData.age,
-                      parentName: formData.parentName,
-                      email: formData.email,
-                      phone: formData.phone,
-                      camps: selectedCamps
-                    }}
-                  />
+                  <button
+                    onClick={() => setTriggerPayment(true)}
+                    className="rounded-md bg-primary px-8 py-2.5 text-[13px] font-semibold text-primary-foreground hover:bg-primary/90"
+                  >
+                    Pay Now &#x20B9;{totalPrice.toLocaleString("en-IN")}
+                  </button>
+                  {triggerPayment && (
+                    <RazorpayPayment
+                      amount={totalPrice}
+                      onSuccess={handlePaymentSuccess}
+                      onFailure={handlePaymentFailure}
+                      customerDetails={{
+                        childName: formData.childName,
+                        age: formData.age,
+                        parentName: formData.parentName,
+                        email: formData.email,
+                        phone: formData.phone,
+                        camps: selectedCamps
+                      }}
+                      triggerPayment={triggerPayment}
+                    />
+                  )}
                 </div>
               </div>
             )}
@@ -337,15 +401,71 @@ export function CampRegistration() {
                     })}
                   </div>
 
+                  {/* Coupon Section */}
+                  <div className="mt-4 space-y-2">
+                    {!couponApplied ? (
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                          Coupon Code (Optional)
+                        </label>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={couponCode}
+                            onChange={(e) => setCouponCode(e.target.value)}
+                            placeholder="Enter code"
+                            className="flex-1 rounded-md border border-border bg-input px-3 py-2 text-[13px] text-foreground outline-none transition-colors focus:border-primary"
+                          />
+                          <button
+                            onClick={applyCoupon}
+                            disabled={!couponCode.trim()}
+                            className="rounded-md bg-primary px-4 py-2 text-[12px] font-semibold text-primary-foreground transition-all hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-40"
+                          >
+                            Apply
+                          </button>
+                        </div>
+                        {couponError && (
+                          <p className="text-[11px] text-red-500">{couponError}</p>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="rounded-md bg-green-50 border border-green-200 p-3">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                            </svg>
+                            <div>
+                              <p className="text-[12px] font-semibold text-green-800">Coupon Applied!</p>
+                              <p className="text-[10px] text-green-600">30% discount ({couponCode})</p>
+                            </div>
+                          </div>
+                          <button
+                            onClick={removeCoupon}
+                            className="text-[10px] text-red-600 hover:text-red-800 underline"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   <div className="mt-5 space-y-1.5 border-t border-border pt-4 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">{selectedCamps.length} camp(s)</span>
-                      <span className="text-foreground">&#x20B9;{totalPrice.toLocaleString("en-IN")}</span>
+                      <span className="text-foreground">&#x20B9;{baseTotal.toLocaleString("en-IN")}</span>
                     </div>
-                    {savings > 0 && (
+                    {multiCampSavings > 0 && (
                       <div className="flex justify-between text-primary">
                         <span>Multi-camp savings</span>
-                        <span>-&#x20B9;{savings.toLocaleString("en-IN")}</span>
+                        <span>-&#x20B9;{multiCampSavings.toLocaleString("en-IN")}</span>
+                      </div>
+                    )}
+                    {couponDiscount > 0 && (
+                      <div className="flex justify-between text-green-600">
+                        <span>Student discount (30%)</span>
+                        <span>-&#x20B9;{couponDiscount.toLocaleString("en-IN")}</span>
                       </div>
                     )}
                     <div className="flex justify-between border-t border-border pt-3 font-bold">
