@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, QrCode } from 'lucide-react';
 
 const locations = [
   "BTM Layout",
@@ -135,6 +135,54 @@ export function OtherLocations() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* QR Code Section */}
+        <div className="mt-12">
+          <div className="bg-card/50 rounded-xl p-8 border border-border">
+            <div className="text-center">
+              <h3 className="text-lg font-bold text-foreground mb-4 flex items-center justify-center gap-2">
+                <QrCode className="h-5 w-5 text-primary" />
+                Scan for Location Details & Timings
+              </h3>
+              <p className="text-sm text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Get instant access to detailed information about all our camp locations, specific schedules, and available programs.
+                Scan the QR code to view complete summer camp details across Bengaluru.
+              </p>
+
+              <div className="flex justify-center mb-6">
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-primary/30 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                  <div className="relative bg-white p-4 rounded-lg shadow-lg">
+                    <img
+                      src="/assets/qrlocation.jpeg"
+                      alt="QR Code for Location Details"
+                      className="w-48 h-48 object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                  <span>All Locations</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                  <span>Camp Timings</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-purple-500"></div>
+                  <span>Program Details</span>
+                </div>
+              </div>
+
+              <p className="text-xs text-muted-foreground mt-4 max-w-lg mx-auto">
+                Don't have a QR scanner? Most phone cameras can scan QR codes directly, or download any free QR scanner app.
+              </p>
             </div>
           </div>
         </div>
