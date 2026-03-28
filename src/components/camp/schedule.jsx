@@ -1,8 +1,8 @@
 const scheduleData = [
-  { sport: "Skating", camp1: "7:00 - 8:00 AM", camp2: "7:00 - 8:00 AM" },
+  { sport: "Skating", camp1: "4:00 - 5:00 PM", camp2: "4:00 - 5:00 PM" },
   { sport: "Basketball (AM)", camp1: "8:00 - 9:00 AM", camp2: "8:00 - 9:00 AM" },
   { sport: "Futsal", camp1: "9:00 - 10:00 AM", camp2: "9:00 - 10:00 AM" },
-  { sport: "Basketball (PM)", camp1: "4:00 - 5:00 PM", camp2: "4:00 - 5:00 PM" },
+  { sport: "Basketball (PM)", camp1: "5:00 - 6:00 PM", camp2: "5:00 - 6:00 PM" },
 ]
 
 export function CampSchedule() {

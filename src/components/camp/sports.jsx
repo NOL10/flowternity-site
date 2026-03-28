@@ -5,7 +5,7 @@ const sports = [
     name: "Basketball",
     image: "/images/hero-basketball.jpg",
     tag: "Court Sport",
-    times: ["8 AM - 9 AM", "4 PM - 5 PM"],
+    times: ["8 AM - 9 AM", "5 PM - 6 PM"],
     timeLabels: ["Morning", "Evening"],
     skills: ["Special guest appearance", "Ball handling & dribbling", "Shooting mechanics", "Offensive & defensive strategies", "Game awareness & match play"],
     gear: "Basketball shoes required. Personal basketball recommended.",
@@ -14,8 +14,8 @@ const sports = [
     name: "Skating",
     image: "/images/skating-action.jpg",
     tag: "Rink Sport",
-    times: ["7 AM - 8 AM"],
-    timeLabels: ["Morning"],
+    times: ["4 PM - 5 PM"],
+    timeLabels: ["Evening"],
     skills: ["Balance and control techniques", "Speed and maneuvering drills", "Safety and braking methods", "Advanced skating movements"],
     gear: "Skates required. Safety gear required (helmet, guards).",
   },
@@ -120,13 +120,13 @@ export function CampSports() {
                   <li
                     key={skill}
                     className={`flex items-start gap-2 text-[13px] text-card-foreground ${index === 0 && skill === "Special guest appearance"
-                        ? "font-bold text-primary bg-primary/10 px-2 py-1 rounded-md border border-primary/20"
-                        : ""
+                      ? "font-bold text-primary bg-primary/10 px-2 py-1 rounded-md border border-primary/20"
+                      : ""
                       }`}
                   >
                     <div className={`mt-1.5 h-1 w-1 shrink-0 rounded-full ${index === 0 && skill === "Special guest appearance"
-                        ? "bg-primary"
-                        : "bg-primary"
+                      ? "bg-primary"
+                      : "bg-primary"
                       }`} />
                     {skill}
                   </li>

@@ -2,14 +2,14 @@ import { useState } from "react"
 import RazorpayPayment from '../RazorpayPayment.jsx'
 
 const campOptions = [
-  { id: "skating-1", label: "Skating - Camp 1", time: "6 Apr - 23 Apr, 7-8 AM" },
-  { id: "skating-2", label: "Skating - Camp 2", time: "27 Apr - 14 May, 7-8 AM" },
+  { id: "skating-1", label: "Skating - Camp 1", time: "6 Apr - 23 Apr, 4-5 PM" },
+  { id: "skating-2", label: "Skating - Camp 2", time: "27 Apr - 14 May, 4-5 PM" },
   { id: "basketball-morning-1", label: "Basketball AM - Camp 1", time: "6 Apr - 23 Apr, 8-9 AM" },
   { id: "basketball-morning-2", label: "Basketball AM - Camp 2", time: "27 Apr - 14 May, 8-9 AM" },
   { id: "futsal-1", label: "Futsal - Camp 1", time: "6 Apr - 23 Apr, 9-10 AM" },
   { id: "futsal-2", label: "Futsal - Camp 2", time: "27 Apr - 14 May, 9-10 AM" },
-  { id: "basketball-evening-1", label: "Basketball PM - Camp 1", time: "6 Apr - 23 Apr, 4-5 PM" },
-  { id: "basketball-evening-2", label: "Basketball PM - Camp 2", time: "27 Apr - 14 May, 4-5 PM" },
+  { id: "basketball-evening-1", label: "Basketball PM - Camp 1", time: "6 Apr - 23 Apr, 5-6 PM" },
+  { id: "basketball-evening-2", label: "Basketball PM - Camp 2", time: "27 Apr - 14 May, 5-6 PM" },
 ]
 
 export function CampRegistration() {
